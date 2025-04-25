@@ -1,14 +1,17 @@
 {/* Sidebar-Komponente basiert auf Standard-Seitenleiste von Flowbite (https://flowbite.com/docs/components/sidebar/) */ }
 import { useState } from "react";
 
-export default function Sidebar() {
+export default function Sidebar({ onToggle }) {
     const [collapsed, setCollapsed] = useState(false);
-    const toggleSidebar = () => setCollapsed(!collapsed);
+    const toggleSidebar = () => {
+        setCollapsed(!collapsed);
+        onToggle(!collapsed); // Gib den Zustand der Sidebar nach außen weiter
+    };
 
     return (
         <aside
             id="default-sidebar"
-            className={`fixed top-0 left-0 z-40 h-screen transition-all ${collapsed ? 'w-20' : 'w-64'} bg-red-custom`}
+            className={`fixed top-0 left-0 z-40 h-screen transition-all ${collapsed ? 'w-20' : 'w-64'} bg-red-custom h-screen`}
             aria-label="Sidebar"
         >
             <div className="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800" style={{ backgroundColor: "var(--red-custom)" }}>

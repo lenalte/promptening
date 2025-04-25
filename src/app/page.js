@@ -1,16 +1,20 @@
 'use client';
+import React from "react";
 import Image from "next/image";
 import Sidebar from "./components/sidebar";
+import ProgressBar from "./components/progressbar";
 
 export default function Home() {
+  const [collapsed, setCollabsed] = React.useState(false);
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-0 font-[family-name:var(--font-jetbrains-mono)]">
       <header>
-        bla
+        <ProgressBar progress={50} sidebarWidth={collapsed ? 80 : 256} />
       </header>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
 
-        <Sidebar />
+        <Sidebar onToggle={setCollabsed} />
 
         <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
           <span className="sr-only">Open sidebar</span>
